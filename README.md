@@ -1,36 +1,151 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# decentrathon rtmp frontend
 
-## Getting Started
+a next.js application for managing rtmp streams for decentrathon.
 
-First, run the development server:
+## english documentation
+
+### features
+
+- create and manage rtmp test streams
+- monitor active streams
+- copy rtmp urls for streaming software
+
+### requirements
+
+- node.js (18.x or later)
+- npm or yarn
+
+### getting started
+
+1. install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+2. start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+set the backend api url in your `.env.local` file:
 
-## Learn More
+```
+NEXT_PUBLIC_API_URL=http://localhost:8001
+```
 
-To learn more about Next.js, take a look at the following resources:
+### usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+the application provides a simple interface to:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- create test rtmp streams with custom names
+- view active streams with their rtmp urls
+- stop running streams
+- refresh the stream list
+- copy rtmp urls to clipboard
 
-## Deploy on Vercel
+### development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+this project uses:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- next.js 14 with app router
+- typescript
+- tailwind css
+- shadcn/ui components
+
+edit the application:
+- pages are in `src/app/`
+- components are in `src/components/`
+- styles are in `src/app/globals.css`
+
+### deployment
+
+deploy the application using vercel or any next.js compatible hosting:
+
+```bash
+npm run build
+npm run start
+```
+
+## русская документация
+
+### функции
+
+- создание и управление тестовыми rtmp потоками
+- мониторинг активных потоков
+- копирование rtmp url для программ трансляции
+
+### требования
+
+- node.js (18.x или новее)
+- npm или yarn
+
+### начало работы
+
+1. установите зависимости:
+
+```bash
+npm install
+# или
+yarn install
+```
+
+2. запустите сервер разработки:
+
+```bash
+npm run dev
+# или
+yarn dev
+```
+
+3. откройте [http://localhost:3000](http://localhost:3000) в вашем браузере для просмотра приложения.
+
+### конфигурация
+
+укажите url backend api в вашем файле `.env.local`:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:8001
+```
+
+### использование
+
+приложение предоставляет простой интерфейс для:
+
+- создания тестовых rtmp потоков с пользовательскими именами
+- просмотра активных потоков с их rtmp адресами
+- остановки работающих потоков
+- обновления списка потоков
+- копирования rtmp адресов в буфер обмена
+
+### разработка
+
+этот проект использует:
+
+- next.js 14 с app router
+- typescript
+- tailwind css
+- компоненты shadcn/ui
+
+редактирование приложения:
+- страницы находятся в `src/app/`
+- компоненты в `src/components/`
+- стили в `src/app/globals.css`
+
+### развертывание
+
+разверните приложение с помощью vercel или любого хостинга, совместимого с next.js:
+
+```bash
+npm run build
+npm run start
+```
