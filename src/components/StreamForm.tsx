@@ -37,17 +37,17 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
     });
     
     if (!streamName) {
-      setError('Stream name is required');
+      setError('Название потока обязательно');
       return;
     }
     
     if (!validStreamName) {
-      setError('Stream name can only contain letters, numbers, underscores and hyphens');
+      setError('Название потока может содержать только буквы, цифры, подчеркивания и дефисы');
       return;
     }
     
     if (customPath && !validCustomPath) {
-      setError('Custom path contains invalid characters');
+      setError('Путь потока содержит недопустимые символы');
       return;
     }
     
@@ -63,7 +63,7 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
       });
       setTimeout(() => setSuccess(false), 5000);
     } catch (error) {
-      setError('Failed to create stream. Check your connection and try again.');
+      setError('Не удалось создать поток. Проверьте соединение и попробуйте снова.');
     } finally {
       setLoading(false);
     }
@@ -85,7 +85,7 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
       {success && (
         <div className="py-3 px-4 bg-green-50 border-l-2 border-green-500 text-sm text-green-700 rounded-md flex items-center">
           <Check className="h-4 w-4 mr-2 text-green-500" />
-          <span>Stream created successfully! Ready to broadcast.</span>
+          <span>Поток успешно создан! Готов к трансляции.</span>
         </div>
       )}
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -93,14 +93,14 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
           <div>
             <div className="flex justify-between items-center mb-2">
               <Label htmlFor="streamName" className="text-sm text-gray-700 font-medium">
-                Stream Name <span className="text-red-500">*</span>
+                Имя потока <span className="text-red-500">*</span>
               </Label>
               <button 
                 type="button" 
                 onClick={() => setStreamName("test_stream")}
                 className="text-xs text-blue-700 hover:text-blue-900 font-medium flex items-center gap-1"
               >
-                Use example
+                Использовать пример
                 <ArrowRight className="h-3 w-3" />
               </button>
             </div>
@@ -133,20 +133,20 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
             {touched.streamName && streamName && !validStreamName && (
               <div className="mt-2 text-red-500 text-sm flex items-center gap-1">
                 <AlertCircle className="h-3 w-3" />
-                <span>Only letters, numbers, underscores and hyphens allowed</span>
+                <span>Имя потока может содержать только буквы, цифры, подчеркивания и дефисы</span>
               </div>
             )}
             {!streamName && touched.streamName && (
               <div className="mt-2 text-red-500 text-sm flex items-center gap-1">
                 <AlertCircle className="h-3 w-3" />
-                <span>Stream name is required</span>
+                <span>Имя потока обязательно</span>
               </div>
             )}
           </div>
           <div>
             <div className="flex justify-between items-center mb-2">
               <Label htmlFor="customPath" className="block text-sm text-gray-700 font-medium">
-                Custom Path <span className="text-gray-400">(optional)</span>
+                Путь потока <span className="text-gray-400">(необязательно)</span>
               </Label>
               <button
                 type="button"
@@ -154,14 +154,14 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
                 className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1"
               >
                 <Info className="h-3 w-3" />
-                <span>What's this?</span>
+                <span>Что это?</span>
               </button>
             </div>
             {showPathInfo && (
               <div className="mb-2 text-xs bg-blue-50 text-blue-700 p-3 rounded-md flex items-start gap-2">
                 <FileText className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="mb-1">The custom path determines the URL structure of your stream.</p>
+                  <p className="mb-1">Путь потока определяет структуру URL вашего потока.</p>
                   <p>Default is <code className="bg-blue-100 px-1 py-0.5 rounded">{getExamplePathName()}</code></p>
                 </div>
               </div>
@@ -194,11 +194,11 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
             {touched.customPath && customPath && !validCustomPath && (
               <div className="mt-2 text-red-500 text-sm flex items-center gap-1">
                 <AlertCircle className="h-3 w-3" />
-                <span>Custom path contains invalid characters</span>
+                <span>Путь потока содержит недопустимые символы</span>
               </div>
             )}
             <p className="mt-1 text-xs text-gray-500">
-              If not provided, will use "{getExamplePathName()}"
+              Если не указан, будет использован "{getExamplePathName()}"
             </p>
           </div>
           <div className="pt-4">
@@ -210,10 +210,10 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
               {loading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Creating...
+                  Создание...
                 </>
               ) : (
-                'Create Stream'
+                'Создать поток'
               )}
             </Button>
             {error && (
