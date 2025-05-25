@@ -242,7 +242,7 @@ export default function Home() {
             <p className="text-gray-600 mb-6">
               Создайте новый RTMP поток для трансляции контента. Особенно полезно когда вы хотите протестировать наше решение, но у вас нет RTMP сервера
             </p>
-            <StreamForm onSubmit={createStream} />
+            <StreamForm onSubmit={createStream} existingStreams={streams} />
           </GridItem>
       </Grid>
       </section>

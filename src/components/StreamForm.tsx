@@ -8,9 +8,10 @@ import { ArrowRight, AlertCircle, Info, Check, Loader2, FileText } from "lucide-
 
 interface StreamFormProps {
   onSubmit: (streamName: string, customPath?: string) => Promise<void>;
+  existingStreams: { name?: string; path: string }[];
 }
 
-const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
+const StreamForm: React.FC<StreamFormProps> = ({ onSubmit, existingStreams }) => {
   const [streamName, setStreamName] = useState('');
   const [customPath, setCustomPath] = useState('');
   const [loading, setLoading] = useState(false);
@@ -49,6 +50,26 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
     if (customPath && !validCustomPath) {
       setError('Путь потока содержит недопустимые символы');
       return;
+    }
+
+    const isDuplicateName = existingStreams.some(stream => 
+      stream.name?.toLowerCase() === streamName.toLowerCase()
+    );
+    
+    if (isDuplicateName) {
+      setError('Поток с таким именем уже существует. Пожалуйста, используйте другое имя.');
+      return;
+    }
+
+    if (customPath) {
+      const isDuplicatePath = existingStreams.some(stream => 
+        stream.path.toLowerCase() === customPath.toLowerCase()
+      );
+      
+      if (isDuplicatePath) {
+        setError('Путь потока уже используется. Пожалуйста, укажите другой путь.');
+        return;
+      }
     }
     
     try {
@@ -162,7 +183,7 @@ const StreamForm: React.FC<StreamFormProps> = ({ onSubmit }) => {
                 <FileText className="h-4 w-4 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="mb-1">Путь потока определяет структуру URL вашего потока.</p>
-                  <p>Default is <code className="bg-blue-100 px-1 py-0.5 rounded">{getExamplePathName()}</code></p>
+                  <p>По умолчанию используется <code className="bg-blue-100 px-1 py-0.5 rounded">{getExamplePathName()}</code></p>
                 </div>
               </div>
             )}
